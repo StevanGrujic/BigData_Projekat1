@@ -14,12 +14,6 @@ from pyspark.sql.functions import date_format, udf
 import sys
 
 def Inicijalizacija():
-    # conf = SparkConf()
-    # conf.setMaster("spark://spark-master:7077")
-    #spark = SparkSession.builder \
-        #.master("local[*]") \
-        #.appName("Projekat") \
-        #.getOrCreate()
     conf = SparkConf()
     conf.setMaster("spark://spark-master:7077")
     conf.set("spark.driver.memory","4g")
@@ -27,9 +21,7 @@ def Inicijalizacija():
     spark = SparkSession.builder.config(conf=conf).appName("Projekat1").getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
     
-    # path = "hdfs://localhost:9000/input/2014-10-"
     path = "hdfs://namenode:9000/podaci/2014-10-"
-    #path = "2014-10/2014-10-"
     n = 3
 
     rdd = spark.sparkContext.textFile(path + "01.txt")
